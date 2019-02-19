@@ -36,7 +36,7 @@ class Game:
         direction = 0
 
         player_character = PlayerCharacter('player.png', 375, 700, 50, 50)
-
+        enemy_0 = NonPlayerCharacter('enemy.png', 20, 600, 50, 50)
 
         # Main game loop, used to update all gameplay such as movement, checks, and graphics
         # Runs until is_game_over = True
@@ -68,6 +68,10 @@ class Game:
             player_character.move(direction)
             # Draw the player at the new position
             player_character.draw(self.game_screen)
+
+            # Move and draw the enemy character
+            enemy_0.move(self.width)
+            enemy_0.draw(self.game_screen)
 
             # Update all game graphics
             pygame.display.update()
@@ -114,6 +118,8 @@ class PlayerCharacter(GameObject):
         elif direction < 0:
             self.y_pos += self.SPEED
 
+
+
 ################################################################
 ##### ENEMYCHARACTER
 ################################################################
@@ -121,7 +127,7 @@ class PlayerCharacter(GameObject):
 class NonPlayerCharacter(GameObject):
 
     # How many tiles the character moves per second
-    SPEED = 10
+    SPEED = 5
 
     def __init__(self, image_path, x, y, width, height):
         super().__init__(image_path, x, y, width, height)
